@@ -5,6 +5,21 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
+import random
+import math
+import threading
+
+
+class threadGen (threading.Thread):
+    def __init__(self, seedId , dim , numTrial):
+        threading.Thread.__init__(self)
+        self.seed = seedId
+        self.dim = dim
+        self.numTrial = numTrial
+    def run(self):
+        global meanS,varS,cpuTimes
+        initTime = time.time()
+        results = list(map(g, range(1, math.ceil(self.numTrial/8)), np.repeat(self.dim, math.ceil(self.numTrial/8))))
 
 
 caps = DesiredCapabilities().CHROME
@@ -71,27 +86,32 @@ for ilInd in range(1,81):
                 ec.visibility_of_element_located((By.ID, "btnCb"))
             )
 
-            MVvote = []
 
-            print(driver.find_element(By.ID, "txtCHP").get_attribute('value'))
-            #MVvote.append( driver.find_element(By.ID, "txtCHP").get_attribute('value') )
-            #MVvote.append( driver.find_element(By.ID, "txtAKP").get_attribute('value') )
-            #MVvote.append( driver.find_element(By.ID, "txtIyi").get_attribute('value') )
-            #MVvote.append( driver.find_element(By.ID, "txtYesilSol").get_attribute('value') )
-            #MVvote.append( driver.find_element(By.ID, "txtMhp").get_attribute('value') )
 
-            print(MVvote)
+            OKKS = driver.find_element(By.ID, "tbMvKayitliSecmenSayisi").get_attribute('value')
+            KGOK = driver.find_element(By.ID, "tbMvOyKullananKayitliSecmenSayisi").get_attribute('value')
+            KTO = driver.find_element(By.ID, "tbMvKullanilanToplamOy").get_attribute('value')
+            IGO = driver.find_element(By.ID, "tbMvItirazsizGecerliOySayisi").get_attribute('value')
+            itirazliGO = driver.find_element(By.ID, "tbMvItirazliGecerliOySayisi").get_attribute('value')
+            gecerliOy = driver.find_element(By.ID, "tbMvGecerliOySayisi").get_attribute('value')
+            gecersizOy = driver.find_element(By.ID, "tbMvGecersizOySayisi").get_attribute('value')
+
+            CHP =  driver.find_element(By.ID, "txtCHP").get_attribute('value')
+            AKP = driver.find_element(By.ID, "txtAkp").get_attribute('value') 
+            IYI = driver.find_element(By.ID, "txtIyi").get_attribute('value') 
+            YSP = driver.find_element(By.ID, "txtYesilSol").get_attribute('value') 
+            MHP = driver.find_element(By.ID, "txtMhp").get_attribute('value') 
+
+            print(CHP,AKP,IYI,YSP,MHP)
 
             WebDriverWait(driver, timeout=10).until(
                 ec.visibility_of_element_located((By.ID, "btnCb"))
             )
             driver.find_element(By.ID, "btnCb").click()
 
-            vote = []
+            RTE = driver.find_element(By.ID, "txtCB1").get_attribute('value')
+            MI = driver.find_element(By.ID, "txtCB2").get_attribute('value')
+            KK = driver.find_element(By.ID, "txtCB3").get_attribute('value')
+            SO = driver.find_element(By.ID, "txtCB4").get_attribute('value')
 
-            vote.append(driver.find_element(By.ID, "txtCB1").get_attribute('value'))
-            vote.append(driver.find_element(By.ID, "txtCB2").get_attribute('value'))
-            vote.append(driver.find_element(By.ID, "txtCB3").get_attribute('value'))
-            vote.append(driver.find_element(By.ID, "txtCB4").get_attribute('value'))
-
-            print(vote)
+            print(RTE,MI,KK,SO)
