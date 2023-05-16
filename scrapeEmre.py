@@ -11,7 +11,7 @@ caps = DesiredCapabilities().CHROME
 caps["pageLoadStrategy"] = "none"   # Do not wait for full page load
 driver = webdriver.Chrome(desired_capabilities=caps, executable_path="path/to/chromedriver.exe")
 
-for ilInd in range(1,81):
+for ilInd in range(1, 81):
     
     ilInd = str(int(ilInd))
     driver.get('https://sts.chp.org.tr')
